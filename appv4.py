@@ -101,11 +101,20 @@ st.markdown("""
         padding: 15px;
         border-top: 1px solid #DDDDDD;
     }
-    /* 8. OCULTAR LA INSIGNIA FLOTANTE DE STREAMLIT CLOUD */
-    div[class^="viewerBadge"] { 
-        display: none !important; 
+    /* 8. LA GUERRA FINAL CONTRA LA INSIGNIA FLOTANTE */
+    /* Usamos *= (contiene) para atraparlo sin importar qué basura pongan delante */
+    [class*="viewerBadge"] {
+        display: none !important;
     }
-    a[href*="streamlit.io/cloud"] {
+    [class*="ViewerBadge"] {
+        display: none !important;
+    }
+    
+    /* Bloqueo a la fuerza bruta: cualquier enlace que vaya a streamlit se oculta */
+    a[href*="streamlit.io"] {
+        display: none !important;
+    }
+    a[href*="streamlit.app"] {
         display: none !important;
     }
 
