@@ -7,26 +7,33 @@ st.set_page_config(page_title="FEPER'S APP", layout="wide", page_icon="🟢", in
 
 st.markdown("""
 <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    
+    /* 1. OCULTAR ELEMENTOS NATIVOS DE STREAMLIT (Nube) */
+    [data-testid="stHeader"] {display: none !important;} /* Oculta la barra superior entera */
+    [data-testid="stToolbar"] {display: none !important;} /* Oculta el menú derecho */
+    [data-testid="stAppDeployButton"] {display: none !important;} /* Oculta el botón de perfil/deploy */
+    [data-testid="stFooter"] {display: none !important;} /* Oculta el footer "Made with Streamlit" */
+    footer {display: none !important;}
+    #MainMenu {display: none !important;}
+
+    /* 2. ESPACIADO GENERAL DE LA APP */
     .block-container {
         padding-top: 2rem !important;
         padding: 1rem !important;
     }
+
+    /* 3. AUTO-AJUSTE DE LOGOS */
     div[data-testid="stImage"] {
         display: flex;
         justify-content: center; 
         align-items: center;
     }
-    
     div[data-testid="stImage"] img {
-        max-height: 40px !important; /* Baja este número (ej. 30px o 40px) */
+        max-height: 40px !important; 
         width: auto !important;
         object-fit: contain; 
     }
-       
+
+    /* 4. ESTILO DE BOTONES PRINCIPALES */
     div.stButton > button, div.stLinkButton > a {
         width: 100%;
         min-height: 4rem; 
@@ -44,17 +51,16 @@ st.markdown("""
         justify-content: center;
         transition: all 0.2s ease-in-out; 
     }
-    
     div.stButton > button:focus, div.stLinkButton > a:focus {
         outline: 4px solid #000000 !important; 
         outline-offset: 3px;
         background-color: #005A22;
     }
-    
     div.stButton > button:active, div.stLinkButton > a:active {
         transform: translateY(2px);
     }
-    
+
+    /* 5. ESTILO BOTÓN "VOLVER" */
     .btn-volver > div > button {
         min-height: 3.5rem !important;
         background-color: #E0E0E0 !important;
@@ -63,44 +69,30 @@ st.markdown("""
         font-weight: bold !important;
         border: 2px solid #555555 !important;
     }
-    
+
+    /* 6. ESTILO DEL TÍTULO APP */
     .titulo-app {
         text-align: center;
         font-weight: 900; 
-        font-size: 3.5rem; /* Un poco más grande y llamativo */
+        font-size: 3.5rem; 
         margin-top: 10px;
         margin-bottom: 5px;
-        /* Degradado de verde corporativo a verde brillante */
         background: linear-gradient(135deg, #004d20 0%, #00A84D 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        /* Sombra suave para darle aspecto 3D */
         filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.15));
-        letter-spacing: -1.5px; /* Junta un pelín las letras para que parezca un logotipo */
+        letter-spacing: -1.5px; 
     }
-    
-    /* La nueva línea decorativa debajo del título */
     .titulo-adorno {
         width: 80px;
         height: 6px;
         background: linear-gradient(90deg, #007A33, #00A84D);
-        margin: 0 auto 30px auto; /* Lo centra perfectamente */
+        margin: 0 auto 30px auto; 
         border-radius: 10px;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     }
-    /* Ocultar el menú de usuario/perfil arriba a la derecha */
-    #MainMenu {visibility: hidden;}
-    div[data-testid="stStatusWidget"] {visibility: hidden;}
-    
-    /* Ocultar la barra de herramientas superior de Streamlit */
-    header {visibility: hidden;}
-    
-    /* Ocultar el footer "Made with Streamlit" y elementos de perfil inferiores */
-    footer {visibility: hidden;}
-    div[data-testid="stFooter"] {display: none !important;}
-    
-    /* Ocultar el botón flotante de opciones de usuario si apareciera */
-    button[title="View developer options"] {display: none !important;}
+
+    /* 7. ESTILO DEL FOOTER LEGAL (El tuyo propio) */
     .footer-legal {
         text-align: center;
         font-size: 0.8rem;
@@ -111,6 +103,7 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
 
 # --- 2. FUNCIONES DE AYUDA (Buscador Anti-tildes) ---
 def quitar_tildes(texto):
