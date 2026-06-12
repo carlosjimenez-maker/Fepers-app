@@ -88,7 +88,19 @@ st.markdown("""
         border-radius: 10px;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     }
+    /* Ocultar el menú de usuario/perfil arriba a la derecha */
+    #MainMenu {visibility: hidden;}
+    div[data-testid="stStatusWidget"] {visibility: hidden;}
     
+    /* Ocultar la barra de herramientas superior de Streamlit */
+    header {visibility: hidden;}
+    
+    /* Ocultar el footer "Made with Streamlit" y elementos de perfil inferiores */
+    footer {visibility: hidden;}
+    div[data-testid="stFooter"] {display: none !important;}
+    
+    /* Ocultar el botón flotante de opciones de usuario si apareciera */
+    button[title="View developer options"] {display: none !important;}
     .footer-legal {
         text-align: center;
         font-size: 0.8rem;
