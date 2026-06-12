@@ -404,3 +404,10 @@ st.markdown("""
     <p>&copy; 2026 FEPER'S APP - Comarca del Campo de Gibraltar</p>
 </div>
 """, unsafe_allow_html=True)
+/* 8. OCULTAR LA INSIGNIA FLOTANTE DE STREAMLIT CLOUD */
+    div[class^="viewerBadge"] { 
+        display: none !important; 
+    }
+    a[href*="streamlit.io/cloud"] {
+        display: none !important;
+    }
